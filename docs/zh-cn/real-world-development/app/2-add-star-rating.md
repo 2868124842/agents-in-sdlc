@@ -3,7 +3,7 @@ title: "第 2 课 - 添加星级评分：快速上手"
 description: "在 GitHub Copilot app 中启动第一个智能体会话，对游戏卡片进行一项小改动，并通过第一个拉取请求合并更改。"
 authors:
   - geektrainer
-lastUpdated: 2026-07-09
+lastUpdated: 2026-10-22
 ---
 
 在上一课中，你浏览了工作区并使用了快速聊天。现在可以启动**智能体会话**，对项目进行第一次更改。此次改动很小：游戏数据中已有星级评分，但主页上的游戏卡片尚未显示。你将要求智能体显示评分、审查更改，并通过第一个拉取请求合并更改。
@@ -28,18 +28,20 @@ Tailspin Toys 中的每款游戏都可以有星级评分，该评分已显示在
 
 ## 启动会话并请求更改
 
-现在启动新会话，探索项目并实现功能。在[上一课][prior-lesson]中，你从 GitHub 存储库添加了项目。接下来为该存储库创建新会话并请求更改。
+现在启动新会话，探索项目并实现功能。在[应用设置][prior-lesson]期间，你已从 GitHub 存储库添加项目。接下来为该存储库创建新会话并请求更改。
 
 1. 返回（或打开）GitHub Copilot app。
-2. 选择 **Projects** 旁的 **+**。
-3. 选择 `tailspin-toys` 作为存储库。
-4. 在提示框下方选择 **new working tree** 和 **Interactive** 模式。使用以下提示词请求更改：
+2. 选择侧边栏顶部的 **+**，启动会话。
+3. 选择仓库 `tailspin-toys`。
+4. 选择 **new working tree**，并在提示框下方选择 **Interactive** 模式。使用以下提示请求更改：
 
     ```plaintext
-    Show each game's starRating out of 5 in the game cards on the list page. If the rating is null, show "No rating yet". Keep the card layout as it is, add tests, and run the relevant checks.
+    在列表页的每张游戏卡片上显示游戏的 5 分制星级评分 `starRating`。如果评分为 null，则显示“No rating yet”。保持卡片布局不变，添加测试，并运行相关检查。
     ```
 
 5. 按 <kbd>Enter</kbd> 将提示词发送给 Copilot。
+
+按 <kbd>Enter</kbd> 将提示发送给 Copilot。
 
 Copilot app 首先创建新的工作树，即项目的隔离副本。随后，它会探索项目，找到添加新功能所需更新的文件，然后创建必要的代码。现在，你已经使用 Copilot app 添加了一项新功能。
 
@@ -47,7 +49,7 @@ Copilot app 首先创建新的工作树，即项目的隔离副本。随后，�
 
 所有 AI 生成的更改在合并前都应接受审查，即使改动很小。接下来直接在 Copilot app 中探索这些更改。
 
-1. 在应用右上角选择 **Toggle review panel**。差异屏幕会打开，显示 Copilot 所做的所有待处理更改。
+1. 在应用右上角选择 **Toggle review panel**。在打开的面板中，选择 **Changes**，查看已更改文件及其差异。
 
     ![GitHub Copilot app 顶部工具栏，箭头指向 Create PR 右侧的 Toggle review panel 按钮](../../../_images/app-2-review-panel.png)
 
@@ -77,18 +79,18 @@ Copilot app 首先创建新的工作树，即项目的隔离副本。随后，�
 > [!TIP]
 > 画布是 Copilot app 内的交互式小组件。稍后你将探索自定义画布，甚至创建自己的画布；现在先使用内置的浏览器画布。
 
-1. 使用以下提示词，让 Copilot 启动应用并在浏览器画布中打开页面：
+1. 使用以下提示，让 Copilot 启动应用并在浏览器画布中打开页面：
 
     ```plaintext
-    Start the app and open it in the browser canvas.
+    启动应用，并在浏览器画布中打开。
     ```
 
 2. 稍等片刻，应用将启动，Copilot app 内会打开浏览器窗口。
 3. 确认已评分的游戏卡片显示满分为五分的评分值。
-4. 完成后，使用以下提示词让 Copilot 停止为此会话启动的开发服务器，并关闭浏览器画布：
+4. 完成后，使用以下提示让 Copilot 停止为此会话启动的开发服务器，并关闭浏览器画布：
 
     ```plaintext
-    Stop the dev server and close the browser canvas.
+    停止开发服务器并关闭浏览器画布。
     ```
 
 ## 打开并合并第一个拉取请求
@@ -97,10 +99,11 @@ Copilot app 首先创建新的工作树，即项目的隔离副本。随后，�
 
 1. 选择右上角的 **Create PR**。
 2. 如果系统提示，请选择 **Sign in with your browser**，并按照提示完成身份验证。
-3. Copilot 开始创建 PR。
-4. 选择聊天上方的 **PR** 气泡，在审查窗格中打开并查看拉取请求。可根据需要在此审查 PR。
-5. 准备好后，选择 **Ready to merge**。
-6. 在新对话框窗口中选择 **Merge pull request**，合并拉取请求。
+3. 如果 Copilot 说明仓库策略要求创建 PR 前必须关联 issue，请确认它应遵循此流程。
+4. Copilot 会开始创建 PR。
+5. 选择聊天上方的 **PR** 气泡，在审查窗格中打开拉取请求。可根据需要在此审查 PR。
+6. 准备好后，选择 **Ready to merge**。
+7. 在新对话框中选择 **Merge pull request**，合并拉取请求。
 
 ## 总结与后续步骤
 
@@ -110,7 +113,7 @@ Copilot app 首先创建新的工作树，即项目的隔离副本。随后，�
 - 指示智能体对游戏卡片进行一项范围明确的小改动。
 - 在工作区差异视图中审查了更改。
 - 在本地运行应用，并在浏览器中确认了星级评分。
-- 打开了 PR 1，审查了检查结果，并明确执行了合并。
+- 打开 PR 1，审查了检查结果，并明确执行了合并。
 
 接下来，你将[从筛选功能议题开始，并使用 Plan 和 Autopilot 模式][next-lesson]构建一项更大的功能。
 

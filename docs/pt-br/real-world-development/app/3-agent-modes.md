@@ -3,7 +3,7 @@ title: "Lição 3 - Modos de agente: Plan e Autopilot"
 description: "Explore os modos de agente: use Plan para definir uma abordagem, Autopilot para criar a filtragem a partir de uma issue e Interactive para revisar e verificar o resultado."
 authors:
   - geektrainer
-lastUpdated: 2026-10-05
+lastUpdated: 2026-10-22
 ---
 
 Começamos adicionando um pequeno recurso ao projeto. No entanto, alterações maiores exigem um processo mais robusto. Felizmente, o aplicativo GitHub Copilot foi desenvolvido para trabalhar com o fluxo existente de uma organização, garantindo que as soluções certas sejam criadas da maneira correta. Esta é a primeira de várias lições nas quais você seguirá um processo típico de desenvolvimento orientado por agentes: começará usando uma issue para gerar um novo recurso, garantirá que o código seja válido e que o recurso se comporte como esperado e, por fim, fará o merge dele no projeto.
@@ -56,12 +56,15 @@ Comece no modo Plan, revise o plano e use o Autopilot para implementá-lo.
 
 Confirme que o PR das avaliações por estrelas foi integrado e que a branch `main` local está atualizada antes de começar.
 
-1. Selecione **Issues** e abra **Allow users to filter games by category and publisher**.
+1. Em **Sessions**, na barra lateral, selecione a pasta do repositório Tailspin Toys e, em seguida, selecione **Issues** na navegação superior do repositório. Abra **Allow users to filter games by category and publisher**. Esse issue já foi criado pelo modelo; não é necessário criar outro.
 2. Selecione **New session** e escolha uma **new working tree** baseada na `main` atualizada.
 
-    ![Visualização da issue no aplicativo GitHub Copilot com uma seta apontando para o botão New session](../../../_images/app-new-session-from-issue.png)
+    ![Visualização do issue no aplicativo GitHub Copilot com uma seta apontando para o botão New session](../../../_images/app-new-session-from-issue.png)
 
 3. Confirme que a issue está anexada à sessão e selecione **Plan** no seletor de modo.
+
+> [!NOTE]
+> Se Node.js ou npm não forem encontrados, peça ao agente que execute `node --version` e `npm --version`. Se funcionarem no seu terminal, mas não na sessão, verifique a configuração do PATH ou do gerenciador de versões do aplicativo e feche-o completamente antes de abri-lo novamente. Tente executar novamente a operação e as verificações com falha; não reinstale o npm apenas porque o agente não o encontra.
 
 ## Planejar o recurso de filtragem
 
@@ -77,7 +80,7 @@ O plano deve incluir lint, testes de unidade, testes E2E e verificação de tipo
 
 ## Aprovar explicitamente o Autopilot
 
-Quando estiver satisfeito com o plano, selecione **Approve and implement with autopilot** ou a opção equivalente na sua versão. Confirme que o indicador de modo mostra **Autopilot**.
+Quando estiver satisfeito com o plano, selecione **Approve and implement this plan** ou a opção equivalente na sua versão. Verifique o modo ativo em vez de presumir que a aprovação o alterará. Confirme que o indicador de modo mostra **Autopilot**.
 
 O Copilot começará a trabalhar na implementação! Você perceberá que ele passará pelo processo de forma iterativa, seguindo o plano estabelecido, gerando código e até executando testes.
 
@@ -93,7 +96,7 @@ Depois que o código for gerado, ele precisará ser revisado antes do merge, ass
 3. Examine a saída de lint, testes de unidade, testes E2E e verificação de tipos. Uma verificação ignorada não conta como aprovação.
 4. Resolva as falhas e execute novamente as verificações afetadas antes de aceitar a implementação. A configuração E2E do Playwright cria e serve uma versão de pré-visualização e pode reutilizar um servidor local; confirme que o servidor testado pertence a esta worktree, e não a uma lição anterior.
 
-## Explorar a nova funcionalidade
+## Explore a nova funcionalidade
 
 O código parece correto, mas será que funciona? Vamos iniciar o aplicativo como fizemos antes e abrir o site em um canvas de navegador.
 
@@ -104,12 +107,18 @@ O código parece correto, mas será que funciona? Vamos iniciar o aplicativo com
     ```
 
 2. Em alguns instantes, o aplicativo será iniciado e uma janela do navegador será aberta dentro do aplicativo Copilot.
-3. Confirme se os cards de jogos avaliados exibem a nota de um total de cinco.
-4. Quando terminar, use o prompt a seguir para pedir ao Copilot que interrompa o servidor de desenvolvimento iniciado para esta sessão:
+3. Selecione uma categoria e confirme que os resultados correspondem a ela. Limpe o filtro, selecione uma editora e confirme que os resultados correspondem a essa editora.
+4. Combine filtros de categoria e editora e compare os resultados com o issue e o plano aprovado. Se houver suporte a várias categorias, verifique o comportamento acordado para combiná-las.
+5. Teste uma combinação sem jogos correspondentes e confira o estado vazio. Limpe ou redefina os filtros e confirme que a lista completa volta a aparecer.
+6. Quando terminar, use o prompt a seguir para pedir ao Copilot que pare o servidor de desenvolvimento iniciado para esta sessão:
 
     ```plaintext
     Stop the dev server and close the browser canvas.
     ```
+
+## Mantenha esta sessão para as próximas lições
+
+Ainda não crie nem mescle o PR de filtragem. Mantenha esta sessão, worktree e branch para as Lições 4 a 8. Em seguida, você aplicará instruções personalizadas ao código de filtragem e adicionará as melhorias da skill e do QA antes de criar e mesclar o PR combinado na Lição 8. Depois de parar o servidor de desenvolvimento, você pode deixar a sessão ociosa e voltar a ela na próxima lição.
 
 ## Resumo e próximos passos
 
